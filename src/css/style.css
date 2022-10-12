@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:wght@300;400;500;700;900&display=swap");
+
+/* font-family: 'Righteous', cursive;
+font-family: 'Roboto', sans-serif; */
+
+.main-container {
+  max-width: 414px;
+  /* height: 100vh; */
+  background-color: #e5e5e5;
+  font-family: "Roboto", sans-serif;
+}
+.header-content {
+  position: sticky;
+  top: 0;
+  left: 0;
+  height: 92px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  background-color: #cf2b2b;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  padding-left: 21px;
+  gap: 5px;
+  justify-content: center;
+}
+.header-content h1 {
+  font-family: "Righteous", cursive;
+  font-size: 44px;
+}
+.header-content p {
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+.main-content {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 0px 30px 19px;
+  gap: 27px;
+}
+.section-menu h2 {
+  font-family: Righteous;
+  font-size: 26px;
+  margin-bottom: 17px;
+}
+.section-cards {
+  display: flex;
+  gap: 16px;
+  overflow-x:scroll;
+}
+.section-option {
+  width: 172px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 18px 14px 10px 14px;
+  border: 5px solid transparent;
+  border-radius: 9px;
+  gap: 9px;
+  transition: 300ms ease;
+  box-shadow: 0px 0px 10px -4px #00000040;
+}
+.section-option:hover {
+  border: 5px solid #32b72f;
+}
+/* nth-child é referente aos filhos de um container pai. 
+Quando se usa o valor 1 abaixo, ele entende que quer todo p que for o 
+primeiro filho do container. No nosso caso, a gente quer o segundo */
+.section-option > p:nth-child(2) {
+  font-size: 16px;
+  font-weight: 700;
+  color: #333333;
+}
+.section-option > p:nth-child(3) {
+  font-size: 15px;
+  font-weight: 300;
+  text-align: justify;
+  word-spacing: -1px;
+  color: #a6a6a6;
+}
+.section-option > p {
+  align-self: flex-start;
+}
+.priceCheck {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.priceCheck ion-icon {
+  color: transparent;
+  font-size: 18px;
+}
+.footer-content {
+  background-color: white;
+  text-align: center;
+  padding: 16px 0px;
+  position: sticky;
+  bottom: 0;
+  right: 0;
+}
+.btn-closeOrder {
+  width: 90%;
+  height: 61px;
+  background-color: #cbcbcb;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  color: white;
+}
+.btn-closeOrder p{
+  width: 200px;
+  margin: 0 auto;
+}
