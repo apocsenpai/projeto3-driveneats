@@ -92,7 +92,7 @@ orderConfirmation.addEventListener("click", function () {
     "\nEndereço: " +
     userLocation;
   orderMessage = window.encodeURIComponent(orderMessage);
-  window.open("https://wa.me/5521999999999?text=" + orderMessage);
+  window.open("https://wa.me/5521964050775?text=" + orderMessage);
   orderValue = 0;
   itemName = [];
   confirmationScreen.classList.remove("show-screen");
