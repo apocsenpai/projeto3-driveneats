@@ -14,6 +14,7 @@ let selectedItems;
 let orderValue = 0;
 let itemValue = 0;
 let itemName = [];
+
 // Percorrer cada array com cada item(opção) para determinar uma função de click
 // para cada item de cada menu
 lunchOrder.forEach(selectItem);
@@ -55,7 +56,15 @@ function buttonActivator() {
 }
 
 closeOrder.addEventListener("click", function () {
-  selectedItems.forEach(funcaolegal);
+
+  selectedItems.forEach(orderCalculation);
+
+  let userName = prompt("Digite seu nome: ");
+  let userLocation = prompt("Digite seu endereço: ");
+  let userPayment = userPaymentValidation();
+  let userChange = changeCalculation(userPayment);
+    console.log(userChange);
+
   let orderMessage =
     "Olá, gostaria de fazer o pedido: \n- Prato: " +
     itemName[0] +
@@ -64,17 +73,56 @@ closeOrder.addEventListener("click", function () {
     " \n- Sobremesa: " +
     itemName[2] +
     " \nTotal: R$ " +
-    orderValue.toFixed(2).replace(".", ",");
-    orderMessage = window.encodeURIComponent(orderMessage);
+    orderValue.toFixed(2).replace(".", ",") +
+    " \nForma de pagamento: " +
+    userPayment +
+    " \nTroco: " +
+    userChange +
+    "\n\nNome: " +
+    userName +
+    "\nEndereço: " +
+    userLocation;
+  orderMessage = window.encodeURIComponent(orderMessage);
   window.open("https://wa.me/5521976275430?text=" + orderMessage);
   orderValue = 0;
   itemName = [];
 });
 
-function funcaolegal(item) {
+function orderCalculation(item) {
   itemName.push(item.querySelector(".itemName").innerHTML);
   itemValue = Number(
     item.querySelector(".itemValue").innerHTML.replace(",", ".")
   );
   orderValue = orderValue + itemValue;
+}
+
+function userPaymentValidation() {
+  let paymentOption = prompt(
+    "Escolha a forma de pagamento: \n1 - Dinheiro\n2 - Cartão de Crédito\n3 - Cartão de débito"
+  );
+  if (paymentOption != 1 && paymentOption != 2 && paymentOption != 3) {
+    alert("Opção inválida. Tente novamente!");
+    return userPaymentValidation();
+  }
+  return paymentOption;
+}
+
+function changeCalculation(paymentOption){
+    if(paymentOption == "1"){
+        let userCashValue = Number(prompt("Troco pra quanto?"));
+       
+        if(userCashValue < orderValue){
+            alert("Dinheiro insuficiente! Tente novamente");
+          return changeCalculation(paymentOption);
+        }else if (userCashValue == orderValue){
+            return "Sem troco"
+        }
+        else{
+            let change = userCashValue - orderValue;
+            return "R$ "+change.toFixed(2).replace(".", ",");
+        }
+      }
+      else{
+        return "Sem troco";
+      }
 }
