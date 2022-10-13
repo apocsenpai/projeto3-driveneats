@@ -25,16 +25,17 @@ let itemValueConfimation = confirmationScreen.querySelectorAll(".itemValue");
 lunchOrder.forEach(selectItem);
 drinkOrder.forEach(selectItem);
 dessertOrder.forEach(selectItem);
-
 // função para selecionar o item
 function selectItem(item) {
   //funcao de clique correspondente para cada item
   item.addEventListener("click", function () {
     //chama a funçao de remover o selecionado e usa como parametro o elemento pai
     // do item clicado
-    deselectItem(this.parentNode);
     //adiciona a classe selecionado que contem as propriedades verdinhas
-    item.classList.add("selecionado");
+    deselectItem(this.parentNode);
+      
+    item.classList.add("selecionado"); 
+    
     buttonActivator();
   });
 }

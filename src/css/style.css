@@ -5,13 +5,14 @@ font-family: 'Roboto', sans-serif; */
 
 .main-container {
   position: relative;
-  max-width: 414px;
+  width: 100%;
   /* height: 100vh; */
   background-color: #e5e5e5;
   font-family: "Roboto", sans-serif;
 }
 .header-content {
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   left: 0;
   height: 92px;
@@ -23,6 +24,7 @@ font-family: 'Roboto', sans-serif; */
   padding-left: 21px;
   gap: 5px;
   justify-content: center;
+  z-index: 2;
 }
 .header-content h1 {
   font-family: "Righteous", cursive;
@@ -34,6 +36,7 @@ font-family: 'Roboto', sans-serif; */
   font-weight: 400;
 }
 .main-content {
+  margin: 95px 0px;
   display: flex;
   flex-direction: column;
   padding: 30px 0px 30px 0px;
@@ -51,26 +54,28 @@ font-family: 'Roboto', sans-serif; */
   overflow-x: scroll;
   padding: 0px 20px;
 }
+.section-cards::-webkit-scrollbar{
+  display: none;
+}
 .section-option {
   width: 172px;
+  height: 230px;
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
   padding: 18px 14px 10px 14px;
   border: 5px solid transparent;
   border-radius: 9px;
   gap: 9px;
-  transition: 300ms ease;
+  transition: 200ms;
   box-shadow: 0px 0px 10px -4px #00000040;
 }
 .section-option img{
   width: 144px;
   height: 87px;
   border-radius: 4px;
-}
-.section-option:hover {
-  border: 5px solid #32b72f;
 }
 /* nth-child é referente aos filhos de um container pai. 
 Quando se usa o valor 1 abaixo, ele entende que quer todo p que for o 
@@ -83,7 +88,7 @@ primeiro filho do container. No nosso caso, a gente quer o segundo */
 .section-option > p:nth-child(3) {
   font-size: 15px;
   font-weight: 300;
-  text-align: justify;
+
   word-spacing: -1px;
   color: #a6a6a6;
 }
@@ -103,9 +108,10 @@ primeiro filho do container. No nosso caso, a gente quer o segundo */
   background-color: white;
   text-align: center;
   padding: 16px 0px;
-  position: sticky;
+  position: fixed;
   bottom: 0;
   right: 0;
+  width: 100%;
 }
 .btn-closeOrder {
   width: 90%;
@@ -139,7 +145,7 @@ primeiro filho do container. No nosso caso, a gente quer o segundo */
   width: 414px;
   top: 0;
   left: 0;
-  z-index: 1;
+  z-index: 5;
   background-color: rgba(255, 255, 255, 0.884);
   transition: 300ms ease;
 }
