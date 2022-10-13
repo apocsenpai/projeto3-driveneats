@@ -58,8 +58,13 @@ function buttonActivator() {
   selectedItems = document.querySelectorAll(".selecionado");
   if (selectedItems.length === 3) {
     closeOrder.classList.add("active");
-    closeOrder.innerHTML = "Fechar pedido";
+    closeOrder.children[0].innerHTML = "Fechar pedido";
     closeOrder.removeAttribute("disabled");
+  }
+  else{
+    closeOrder.classList.remove("active");
+    closeOrder.children[0].innerHTML = "Selecione os 3 itens para fechar o pedido";
+    closeOrder.setAttribute("disabled");
   }
 }
 
