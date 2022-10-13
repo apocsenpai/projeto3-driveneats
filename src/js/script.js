@@ -9,49 +9,72 @@ const drinkOrder = document.querySelectorAll(".drinkMenu .section-option");
 const dessertOrder = document.querySelectorAll(".dessertMenu .section-option");
 
 const closeOrder = document.getElementById("closeOrder");
-// Percorrer cada array com cada item(opção) para determinar uma função de click 
+
+let selectedItems;
+let orderValue = 0;
+let itemValue = 0;
+let itemName = [];
+// Percorrer cada array com cada item(opção) para determinar uma função de click
 // para cada item de cada menu
 lunchOrder.forEach(selectItem);
 drinkOrder.forEach(selectItem);
 dessertOrder.forEach(selectItem);
 
-
-
 // função para selecionar o item
-function selectItem(item){
-    //funcao de clique correspondente para cada item
-    item.addEventListener("click", function(){
-        //chama a funçao de remover o selecionado e usa como parametro o elemento pai
-        // do item clicado
-        deselectItem(this.parentNode);
-        //adiciona a classe selecionado que contem as propriedades verdinhas
-        item.classList.add("selecionado");
-        buttonActivator();
-    });
-   
+function selectItem(item) {
+  //funcao de clique correspondente para cada item
+  item.addEventListener("click", function () {
+    //chama a funçao de remover o selecionado e usa como parametro o elemento pai
+    // do item clicado
+    deselectItem(this.parentNode);
+    //adiciona a classe selecionado que contem as propriedades verdinhas
+    item.classList.add("selecionado");
+    buttonActivator();
+  });
 }
 //função pra desselecionar os items
-function deselectItem(categoryOrder){
-    // no elemento pai da opção selecionada, vai procurar o elemento filho que
-    // contem a opção selecionada
-    let selectedItem = categoryOrder.querySelector(".selecionado");
-    
-    if (selectedItem !== null){
-        //se houver algum elemento com a classe selecionado, a função irá remover essa
-        //classe especificamente deste elemento
-        selectedItem.classList.remove("selecionado");
-     }
+function deselectItem(categoryOrder) {
+  // no elemento pai da opção selecionada, vai procurar o elemento filho que
+  // contem a opção selecionada
+  let selectedItem = categoryOrder.querySelector(".selecionado");
+
+  if (selectedItem !== null) {
+    //se houver algum elemento com a classe selecionado, a função irá remover essa
+    //classe especificamente deste elemento
+    selectedItem.classList.remove("selecionado");
+  }
 }
 
-function buttonActivator(){
-    let selectedItems = document.querySelectorAll(".selecionado");
-    if(selectedItems.length === 3){
-        closeOrder.classList.add("active");
-        closeOrder.innerHTML = "Fechar pedido";
-        closeOrder.removeAttribute("disabled");
-    }
+function buttonActivator() {
+  selectedItems = document.querySelectorAll(".selecionado");
+  if (selectedItems.length === 3) {
+    closeOrder.classList.add("active");
+    closeOrder.innerHTML = "Fechar pedido";
+    closeOrder.removeAttribute("disabled");
+  }
 }
 
-closeOrder.addEventListener("click", function(){
-    alert("show");
+closeOrder.addEventListener("click", function () {
+  selectedItems.forEach(funcaolegal);
+  let orderMessage =
+    "Olá, gostaria de fazer o pedido: \n- Prato: " +
+    itemName[0] +
+    " \n- Bebida: " +
+    itemName[1] +
+    " \n- Sobremesa: " +
+    itemName[2] +
+    " \nTotal: R$ " +
+    orderValue.toFixed(2).replace(".", ",");
+    orderMessage = window.encodeURIComponent(orderMessage);
+  window.open("https://wa.me/5521976275430?text=" + orderMessage);
+  orderValue = 0;
+  itemName = [];
 });
+
+function funcaolegal(item) {
+  itemName.push(item.querySelector(".itemName").innerHTML);
+  itemValue = Number(
+    item.querySelector(".itemValue").innerHTML.replace(",", ".")
+  );
+  orderValue = orderValue + itemValue;
+}
