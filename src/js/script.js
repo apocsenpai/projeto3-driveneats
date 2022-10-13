@@ -32,10 +32,12 @@ function selectItem(item) {
     //chama a funçao de remover o selecionado e usa como parametro o elemento pai
     // do item clicado
     //adiciona a classe selecionado que contem as propriedades verdinhas
-    deselectItem(this.parentNode);
-      
-    item.classList.add("selecionado"); 
-    
+    if(item.classList.contains("selecionado")){
+      item.classList.remove("selecionado");
+    }else{
+      deselectItem(this.parentNode);
+      item.classList.add("selecionado"); 
+    }    
     buttonActivator();
   });
 }
