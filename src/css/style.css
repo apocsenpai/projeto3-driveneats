@@ -35,18 +35,20 @@ font-family: 'Roboto', sans-serif; */
 .main-content {
   display: flex;
   flex-direction: column;
-  padding: 30px 0px 30px 19px;
+  padding: 30px 0px 30px 0px;
   gap: 27px;
 }
 .section-menu h2 {
   font-family: Righteous;
   font-size: 26px;
   margin-bottom: 17px;
+  padding-left: 20px;
 }
 .section-cards {
   display: flex;
   gap: 16px;
   overflow-x:scroll;
+  padding: 0px 20px;
 }
 .section-option {
   width: 172px;
@@ -112,4 +114,11 @@ primeiro filho do container. No nosso caso, a gente quer o segundo */
 .btn-closeOrder p{
   width: 200px;
   margin: 0 auto;
+}
+/* classe para apontar a opção selecionada */
+.selecionado{
+  border: 5px solid #32b72f;
+}
+.selecionado ion-icon{
+  color: #32b72f;
 }
