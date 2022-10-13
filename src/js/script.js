@@ -7,14 +7,19 @@
 const lunchOrder = document.querySelectorAll(".lunchMenu .section-option");
 const drinkOrder = document.querySelectorAll(".drinkMenu .section-option");
 const dessertOrder = document.querySelectorAll(".dessertMenu .section-option");
-
 const closeOrder = document.getElementById("closeOrder");
+
+const confirmationScreen = document.getElementById("confirmationScreen");
+const orderCancelation = document.getElementById("btn-orderCancelation");
+const orderTotalValue = document.getElementById("totalValue");
+const orderConfirmation = document.getElementById("btn-orderConfirmation");
 
 let selectedItems;
 let orderValue = 0;
 let itemValue = 0;
 let itemName = [];
-
+let itemNameConfirmation = confirmationScreen.querySelectorAll(".itemName");
+let itemValueConfimation = confirmationScreen.querySelectorAll(".itemValue");
 // Percorrer cada array com cada item(opção) para determinar uma função de click
 // para cada item de cada menu
 lunchOrder.forEach(selectItem);
@@ -56,14 +61,18 @@ function buttonActivator() {
 }
 
 closeOrder.addEventListener("click", function () {
-
   selectedItems.forEach(orderCalculation);
+  orderTotalValue.innerHTML = "R$ " + orderValue.toFixed(2).replace(".", ",");
 
+  confirmationScreen.classList.add("show-screen");
+});
+
+orderConfirmation.addEventListener("click", function () {
   let userName = prompt("Digite seu nome: ");
   let userLocation = prompt("Digite seu endereço: ");
   let userPayment = userPaymentValidation();
   let userChange = changeCalculation(userPayment);
-    console.log(userChange);
+  console.log(userChange);
 
   let orderMessage =
     "Olá, gostaria de fazer o pedido: \n- Prato: " +
@@ -83,16 +92,27 @@ closeOrder.addEventListener("click", function () {
     "\nEndereço: " +
     userLocation;
   orderMessage = window.encodeURIComponent(orderMessage);
-  window.open("https://wa.me/5521976275430?text=" + orderMessage);
+  window.open("https://wa.me/5521999999999?text=" + orderMessage);
+  orderValue = 0;
+  itemName = [];
+  confirmationScreen.classList.remove("show-screen");
+});
+
+orderCancelation.addEventListener("click", function () {
+  confirmationScreen.classList.remove("show-screen");
   orderValue = 0;
   itemName = [];
 });
 
-function orderCalculation(item) {
-  itemName.push(item.querySelector(".itemName").innerHTML);
-  itemValue = Number(
-    item.querySelector(".itemValue").innerHTML.replace(",", ".")
-  );
+function orderCalculation(item, indice) {
+  let itemContentName = item.querySelector(".itemName").innerHTML;
+  let itemContentValue = item.querySelector(".itemValue").innerHTML;
+
+  itemNameConfirmation[indice].innerHTML = itemContentName;
+  itemValueConfimation[indice].innerHTML = itemContentValue;
+
+  itemName.push(itemContentName);
+  itemValue = Number(itemContentValue.replace(",", "."));
   orderValue = orderValue + itemValue;
 }
 
@@ -107,22 +127,20 @@ function userPaymentValidation() {
   return paymentOption;
 }
 
-function changeCalculation(paymentOption){
-    if(paymentOption == "1"){
-        let userCashValue = Number(prompt("Troco pra quanto?"));
-       
-        if(userCashValue < orderValue){
-            alert("Dinheiro insuficiente! Tente novamente");
-          return changeCalculation(paymentOption);
-        }else if (userCashValue == orderValue){
-            return "Sem troco"
-        }
-        else{
-            let change = userCashValue - orderValue;
-            return "R$ "+change.toFixed(2).replace(".", ",");
-        }
-      }
-      else{
-        return "Sem troco";
-      }
+function changeCalculation(paymentOption) {
+  if (paymentOption == "1") {
+    let userCashValue = Number(prompt("Troco pra quanto?"));
+
+    if (userCashValue < orderValue) {
+      alert("Dinheiro insuficiente! Tente novamente");
+      return changeCalculation(paymentOption);
+    } else if (userCashValue == orderValue) {
+      return "Sem troco";
+    } else {
+      let change = userCashValue - orderValue;
+      return "R$ " + change.toFixed(2).replace(".", ",");
+    }
+  } else {
+    return "Sem troco";
+  }
 }

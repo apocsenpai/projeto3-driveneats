@@ -144,11 +144,29 @@
           </section>
         </section>
       </main>
+      <main class="main-confirmationScreen" id="confirmationScreen">
+        <div>
+        <section class="section-confirmation">
+          <h4>Confime seu pedido</h4>
+          <div class="order-information">
+            <div><span class="itemName"></span><span class="itemValue"></span></div>
+            <div><span class="itemName"></span><span class="itemValue"></span></div>
+            <div><span class="itemName"></span><span class="itemValue"></span></div>
+            <div><span>TOTAL</span><span class="orderValue" id="totalValue"></span></div>
+          </div>
+          <div class="btn-group">
+          <button id="btn-orderConfirmation" class="btn-orderConfirmation">Tudo certo, pode pedir!</button>
+          <button id="btn-orderCancelation" class="btn-orderCancelation">Cancelar</button>
+        </div>
+        </section>
+      </div>
+      </main>
       <footer class="footer-content">
         <button class="btn-closeOrder" id="closeOrder" disabled>
          <p>Selecione os 3 itens para fechar o pedido</p> 
         </button>
       </footer>
+      
     </div>
     <!-- JavaScript -->
     <script src="/src/js/script.js"></script>
