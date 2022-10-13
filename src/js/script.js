@@ -8,11 +8,14 @@ const lunchOrder = document.querySelectorAll(".lunchMenu .section-option");
 const drinkOrder = document.querySelectorAll(".drinkMenu .section-option");
 const dessertOrder = document.querySelectorAll(".dessertMenu .section-option");
 
+const closeOrder = document.getElementById("closeOrder");
 // Percorrer cada array com cada item(opção) para determinar uma função de click 
 // para cada item de cada menu
 lunchOrder.forEach(selectItem);
 drinkOrder.forEach(selectItem);
 dessertOrder.forEach(selectItem);
+
+
 
 // função para selecionar o item
 function selectItem(item){
@@ -23,6 +26,7 @@ function selectItem(item){
         deselectItem(this.parentNode);
         //adiciona a classe selecionado que contem as propriedades verdinhas
         item.classList.add("selecionado");
+        buttonActivator();
     });
    
 }
@@ -38,3 +42,16 @@ function deselectItem(categoryOrder){
         selectedItem.classList.remove("selecionado");
      }
 }
+
+function buttonActivator(){
+    let selectedItems = document.querySelectorAll(".selecionado");
+    if(selectedItems.length === 3){
+        closeOrder.classList.add("active");
+        closeOrder.innerHTML = "Fechar pedido";
+        closeOrder.removeAttribute("disabled");
+    }
+}
+
+closeOrder.addEventListener("click", function(){
+    alert("show");
+});
